@@ -39,7 +39,12 @@ public class ActorFactory {
    * @return
    */
   public static Actor createPlayer(Player.PlayerTeam team, GameMap mapReference) {
-    throw new RuntimeException("Method not implemented!");
+    return switch (team) {
+      case ROCK -> new Rock(getName(), mapReference);
+      case PAPER -> new Paper(getName(), mapReference);
+      case SCISSORS -> new Scissors(getName(), mapReference);
+      default -> throw new IllegalStateException("'Team' was not recognised.");
+    };
   }
 
   /**
@@ -49,7 +54,7 @@ public class ActorFactory {
    * @return
    */
   public static Actor createFlag(GameMap mapReference) {
-    throw new RuntimeException("Method not implemented!");
+    return new Flag(mapReference);
   }
 
   /**
@@ -60,6 +65,13 @@ public class ActorFactory {
    * @return
    */
   public static Actor createFromChar(char c, GameMap mapReference) {
-    throw new RuntimeException("Method not implemented!");
+    return switch (Character.toUpperCase(c)) {
+      case '.' -> null;
+      case 'P' -> new Paper(getName(), mapReference);
+      case 'R' -> new Rock(getName(), mapReference);
+      case 'S' -> new Scissors(getName(), mapReference);
+      case 'F' -> new Flag(mapReference);
+      default -> throw new IllegalStateException("Character could not be interpreted: '" + c + "'");
+    };
   }
 }
