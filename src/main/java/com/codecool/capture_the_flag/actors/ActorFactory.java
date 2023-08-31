@@ -28,8 +28,7 @@ public class ActorFactory {
    * @return name
    */
   public static String getName() {
-
-    return names.peek();
+    return names.remove();
   }
 
   /**
