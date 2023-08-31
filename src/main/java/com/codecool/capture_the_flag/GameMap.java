@@ -39,8 +39,15 @@ public class GameMap {
    * Returns a new GameMap instance, constructed from given char matrix
    */
   public GameMap(String charMatrix) {
-
-    throw new RuntimeException("Method not implemented!");
+    String[] lines = charMatrix.split("\r\n|\r|\n");
+    Actor[][] actorMatrix = new Actor[lines.length][lines[0].length()];
+    for (int i = 0; i<lines.length; i++) {
+      char[] characters = lines[i].toCharArray();
+      for (int j = 0; j<characters.length; j++){
+        actorMatrix[i][j] = ActorFactory.createFromChar(characters[j],this);
+      }
+    }
+    this.actorMatrix=actorMatrix;
   }
 
   /**
@@ -50,6 +57,7 @@ public class GameMap {
    */
   @Override
   public String toString() {
+
     throw new RuntimeException("Method not implemented!");
   }
 
@@ -148,6 +156,7 @@ public class GameMap {
    * @return
    */
   public Vector getNearestFlagPosition(Player player) {
+    if (flags.isEmpty()) throw new IllegalArgumentException ("There are no more flags");
     throw new RuntimeException("Method not implemented!");
   }
 
@@ -158,7 +167,13 @@ public class GameMap {
    * @return
    */
   public boolean withinBoundaries(Vector position) {
-    throw new RuntimeException("Method not implemented!");
+    try {
+      Actor actor = getActorMatrix()[position.getY()][position.getX()];
+      return true;
+    }
+    catch(ArrayIndexOutOfBoundsException e) {
+      return false;
+    }
   }
 
   public Actor[][] getActorMatrix() {
