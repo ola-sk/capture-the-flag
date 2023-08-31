@@ -39,7 +39,10 @@ public abstract class Player extends Actor {
    * @return
    */
   public int getCurrentScore() {
-    throw new RuntimeException("Method not implemented!");
+    int sum = 0;
+    sum += (this.getKilledPlayers() * 5);
+    sum += (this.getCapturedFlags() * 10);
+    return sum;
   }
 
   /**
