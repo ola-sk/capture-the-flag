@@ -67,8 +67,21 @@ public class GameMap {
    */
   @Override
   public String toString() {
-
-    throw new RuntimeException("Method not implemented!");
+    StringBuilder sb = new StringBuilder();
+    for (Actor[] row : actorMatrix) {
+      for (Actor actor : row) {
+        if (actor != null) {
+          sb.append(actor.toString());
+        } else {
+          sb.append(".");
+        }
+      }
+      sb.append(System.lineSeparator());
+    }
+    if (sb.length() > 0) {
+      sb.setLength(sb.length() - System.lineSeparator().length());
+    }
+    return sb.toString();
   }
 
   /**

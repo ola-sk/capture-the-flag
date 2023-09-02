@@ -20,6 +20,7 @@ class GameMapTest {
 
   @Test
   void testToString() {
+    assertEquals(testMap.toUpperCase(), mockGameMap.toString());
   }
 
   @Test

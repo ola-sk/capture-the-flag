@@ -26,4 +26,9 @@ public class Flag extends Actor {
   public void setCaptured(boolean captured) {
     this.captured = captured;
   }
+
+  @Override
+  public String toString() {
+    return "F";
+  }
 }

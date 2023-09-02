@@ -36,4 +36,9 @@ public class Rock extends Player {
   public PlayerTeam getTeam() {
     throw new RuntimeException("Method not implemented!");
   }
+
+  @Override
+  public String toString() {
+    return "R";
+  }
 }
