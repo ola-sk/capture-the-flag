@@ -39,12 +39,12 @@ public class ActorFactory {
    * @return
    */
   public static Actor createPlayer(Player.PlayerTeam team, GameMap mapReference) {
-    return switch (team) {
-      case ROCK -> new Rock(getName(), mapReference);
-      case PAPER -> new Paper(getName(), mapReference);
-      case SCISSORS -> new Scissors(getName(), mapReference);
-      default -> throw new IllegalStateException("'Team' was not recognised.");
-    };
+    switch (team) {
+      case ROCK: return new Rock(getName(), mapReference);
+      case PAPER: return new Paper(getName(), mapReference);
+      case SCISSORS: return new Scissors(getName(), mapReference);
+      default: throw new IllegalStateException("'Team' was not recognised.");
+    }
   }
 
   /**
@@ -65,13 +65,13 @@ public class ActorFactory {
    * @return
    */
   public static Actor createFromChar(char c, GameMap mapReference) {
-    return switch (Character.toUpperCase(c)) {
-      case '.' -> null;
-      case 'P' -> new Paper(getName(), mapReference);
-      case 'R' -> new Rock(getName(), mapReference);
-      case 'S' -> new Scissors(getName(), mapReference);
-      case 'F' -> new Flag(mapReference);
-      default -> throw new IllegalStateException("Character could not be interpreted: '" + c + "'");
-    };
+    switch (Character.toUpperCase(c)) {
+      case '.': return null;
+      case 'P': return new Paper(getName(), mapReference);
+      case 'R': return new Rock(getName(), mapReference);
+      case 'S': return new Scissors(getName(), mapReference);
+      case 'F': return new Flag(mapReference);
+      default: throw new IllegalStateException("Character could not be interpreted: '" + c + "'");
+    }
   }
 }
