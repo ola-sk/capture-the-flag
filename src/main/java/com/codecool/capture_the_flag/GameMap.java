@@ -109,7 +109,14 @@ public class GameMap {
    * @return
    */
   public Vector getPosition(Actor actor) {
-    throw new RuntimeException("Method not implemented!");
+    for (int i = 0; i < actorMatrix.length; i++) {
+      for (int j = 0; j < actorMatrix[i].length; j++) {
+        if (actorMatrix[i][j] == actor) {
+          return new Vector(j, i);
+        }
+      }
+    }
+    throw new IllegalArgumentException("Actor not found in the actorMatrix!");
   }
 
   /**
