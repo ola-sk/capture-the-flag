@@ -30,7 +30,12 @@ public abstract class Player extends Actor {
    * @return
    */
   public static Direction getMoveDirection(Vector playerPosition, Vector flagPosition) {
-    throw new RuntimeException("Method not implemented!");
+    if (flagPosition == null ) { return null;}
+    else if(playerPosition.getX() == flagPosition.getX()) {
+      if (playerPosition.getY()+1 == flagPosition.getY()) return Direction.DOWN;
+      else if (playerPosition.getY()-1 == flagPosition.getY()) return Direction.UP;
+    }
+    return null;
   }
 
   /**

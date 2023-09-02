@@ -191,10 +191,18 @@ public class GameMap {
    * @return
    */
   public Vector getNearestFlagPosition(Player player) {
-    if (flags.isEmpty()) throw new IllegalArgumentException ("There are no more flags");
-    throw new RuntimeException("Method not implemented!");
+    Vector playerPosition = getPosition(player);
+    Vector up = new Vector(playerPosition.getX(), playerPosition.getY()-1);
+    if (withinBoundaries(up)) {
+      return up;
+    } else {
+      Vector down = new Vector(playerPosition.getX(), playerPosition.getY()+1);
+      if (withinBoundaries(down)) {
+        return down;
+      }
+    }
+    return null;
   }
-
   /**
    * Returns true if given position is within the map's boundaries
    *
