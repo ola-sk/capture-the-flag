@@ -80,7 +80,12 @@ public class GameMap {
    * @return
    */
   public Actor getActor(Vector position) {
-    throw new RuntimeException("Method not implemented!");
+    try {
+      Actor actor = getActorMatrix()[position.getY()][position.getX()];
+      return actor;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      throw new IllegalArgumentException("Position outside of map boundaries.");
+    }
   }
 
   /**
@@ -102,7 +107,7 @@ public class GameMap {
    * @param position
    */
   public void setPosition(Actor actor, Vector position) {
-    throw new RuntimeException("Method not implemented!");
+    this.getActorMatrix()[position.getY()][position.getX()] = actor;
   }
 
   /**
