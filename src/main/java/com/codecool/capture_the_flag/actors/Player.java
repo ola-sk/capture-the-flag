@@ -30,7 +30,21 @@ public abstract class Player extends Actor {
    * @return
    */
   public static Direction getMoveDirection(Vector playerPosition, Vector flagPosition) {
-    throw new RuntimeException("Method not implemented!");
+    if (flagPosition == null ) { throw new IllegalArgumentException();}
+    else {
+      int deltaX = flagPosition.getX() - playerPosition.getX();
+      int deltaY = flagPosition.getY() - playerPosition.getY();
+      if (deltaX == 0 && deltaY == 0) {
+        throw new IllegalArgumentException("Player is already at the flag position.");
+      }
+      if (Math.abs(deltaX) >= Math.abs(deltaY)) {
+        // Move horizontally if horizontal distance is bigger
+        return (deltaX > 0) ? Direction.RIGHT : Direction.LEFT;
+      } else {
+        // Move vertically
+        return (deltaY > 0) ? Direction.DOWN : Direction.UP;
+      }
+    }
   }
 
   /**

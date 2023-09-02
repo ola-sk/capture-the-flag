@@ -191,10 +191,26 @@ public class GameMap {
    * @return
    */
   public Vector getNearestFlagPosition(Player player) {
-    if (flags.isEmpty()) throw new IllegalArgumentException ("There are no more flags");
-    throw new RuntimeException("Method not implemented!");
-  }
+    Vector playerPosition = getPosition(player);
+    Vector nearestFlagPosition = null;
+    double shortestDistance = Double.MAX_VALUE;
 
+    for (Flag flag : flags) {
+      Vector flagPosition = getPosition(flag);
+      double distance = calculateDistance(playerPosition, flagPosition);
+      if (distance < shortestDistance) {
+        shortestDistance = distance;
+        nearestFlagPosition = flagPosition;
+      }
+    }
+
+    return nearestFlagPosition;
+  }
+  private double calculateDistance(Vector position1, Vector position2) {
+    int deltaX = position2.getX() - position1.getX();
+    int deltaY = position2.getY() - position1.getY();
+    return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  }
   /**
    * Returns true if given position is within the map's boundaries
    *
