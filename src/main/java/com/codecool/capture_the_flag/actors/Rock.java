@@ -19,7 +19,7 @@ public class Rock extends Player {
     if (!isAlive())
       return;
 
-    // Make next move
+    // Make the next move
     Vector myPosition = mapReference.getPosition(this);
     Vector nearestFlagPosition = mapReference.getNearestFlagPosition(this);
     Direction targetDirection = getMoveDirection(myPosition, nearestFlagPosition);
@@ -28,8 +28,15 @@ public class Rock extends Player {
   }
 
   @Override
-  public int Fight(Player otherPlayer) {
-    throw new RuntimeException("Method not implemented!");
+  public short Fight(Player otherPlayer) {
+    throwIfFightNotPossible(otherPlayer);
+    if (otherPlayer.getTeam() == this.getTeam())
+      return -1;
+    if (otherPlayer.getTeam() == PlayerTeam.SCISSORS)
+      return winFight(otherPlayer);
+    if (otherPlayer.getTeam() == PlayerTeam.PAPER)
+      return looseFight(otherPlayer);
+    throw new IllegalStateException();
   }
 
   @Override

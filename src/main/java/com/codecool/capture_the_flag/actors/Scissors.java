@@ -20,8 +20,15 @@ public class Scissors extends Player {
   }
 
   @Override
-  public int Fight(Player otherPlayer) {
-    throw new RuntimeException("Method not implemented!");
+  public short Fight(Player otherPlayer) {
+    throwIfFightNotPossible(otherPlayer);
+    if (otherPlayer.getTeam() == this.getTeam())
+      return -1;
+    if (otherPlayer.getTeam() == PlayerTeam.PAPER)
+      return winFight(otherPlayer);
+    if (otherPlayer.getTeam() == PlayerTeam.ROCK)
+      return looseFight(otherPlayer);
+    throw new IllegalStateException();
   }
 
   @Override
