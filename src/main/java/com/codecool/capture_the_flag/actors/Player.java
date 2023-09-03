@@ -70,8 +70,32 @@ public abstract class Player extends Actor {
    * @param otherPlayer
    * @return 1 if this player won, 0 if the other player won, -1 if fight didn't happen (otherPlayer is a teammate)
    */
-  public abstract int Fight(Player otherPlayer);
-
+  public abstract short Fight(Player otherPlayer);
+  void throwIfFightNotPossible(Player otherPlayer) throws RuntimeException {
+    if (!this.isAlive()) {
+      throw new IllegalStateException("Player cannot fight since it is dead!");
+    } else if (otherPlayer == null) {
+      throw new IllegalArgumentException("The `otherPlayer` cannot be null.");
+    } else if (!otherPlayer.isAlive()) {
+      throw new IllegalArgumentException("The other player was dead already!");
+    }
+  }
+  boolean verifyPlayersCanFight(Player otherPlayer) {
+    if (this.isAlive() && otherPlayer == null && otherPlayer.isAlive()) {
+      return true;
+    } else
+      return false;
+  }
+  short winFight(Player enemy) {
+    enemy.setAlive(false);
+    this.addKilledPlayer();
+    return 1;
+  }
+  short looseFight(Player enemy) {
+    this.setAlive(false);
+    enemy.addKilledPlayer();
+    return 0;
+  }
   /**
    * Returns this player's team
    *
@@ -117,7 +141,9 @@ public abstract class Player extends Actor {
   public void setKilledPlayers(int killedPlayers) {
     this.killedPlayers = killedPlayers;
   }
-
+  public void addKilledPlayer() {
+    this.killedPlayers++;
+  }
   /**
    * Returns this player's name
    *

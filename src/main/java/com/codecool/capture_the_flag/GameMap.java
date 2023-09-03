@@ -163,20 +163,15 @@ public class GameMap {
 
       if (fightResult == 1) {
         // Player has won, move to the target position
-        otherPlayer.setAlive(false);
         actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
         actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
         setPosition(player, targetPosition);
-
-        player.setKilledPlayers(player.getKilledPlayers() + 1);
       } else if (fightResult == 0) {
         // Other player has won
         player.setAlive(false);
         actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
         actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
         setPosition(otherPlayer, currentPosition);
-
-        otherPlayer.setKilledPlayers(otherPlayer.getKilledPlayers() + 1);
       }
     } else {
       throw new IllegalArgumentException();
