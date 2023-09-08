@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.codecool.capture_the_flag.util.GameUtils.getDistance;
 import static com.codecool.capture_the_flag.util.GameUtils.toVector;
 
 /**
