@@ -145,11 +145,11 @@ public class GameMap {
     Actor actorOnTargetPosition = getActor(targetPosition);
 
     if (actorOnTargetPosition == null) {
-      actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
+      emptyPosition(currentPosition, player);
       setPosition(player, targetPosition);
     } else if (actorOnTargetPosition instanceof Flag) {
-      actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
-      actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
+      emptyPosition(currentPosition, player);
+      emptyPosition(targetPosition, actorOnTargetPosition);
       setPosition(player, targetPosition);
 
       player.addCapturedFlag();
@@ -158,16 +158,16 @@ public class GameMap {
       Player otherPlayer = (Player) actorOnTargetPosition;
       int fightResult = player.fight(otherPlayer);
 
-      if (fightResult == 1) {
-        // Player has won, move to the target position
-        actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
-        actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
-        setPosition(player, targetPosition);
-      } else if (fightResult == 0) {
-        // The other player has won
-        actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
-        actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
-        setPosition(otherPlayer, currentPosition);
+      if (fightResult >= 0) {
+        emptyPosition(currentPosition, player);
+        emptyPosition(targetPosition, otherPlayer);
+        if (fightResult == 1) {
+          // This player has won, move to the target position
+          setPosition(player, targetPosition);
+        } else if (fightResult == 0) {
+          // The other player has won
+          setPosition(otherPlayer, currentPosition);
+        }
       }
     } else {
       throw new IllegalArgumentException();
@@ -216,6 +216,19 @@ public class GameMap {
 
   public Actor[][] getActorMatrix() {
     return actorMatrix;
+  }
+
+  /**
+   * Empties a given position if it is within the map's boundaries and the actor stands on it
+   *
+   * @param position position
+   * @param actor actor that should be removed from the position
+   */
+  public void emptyPosition(Vector position, Actor actor) {
+    // if position within boundaries and the actor stands on it, empty it
+    if (withinBoundaries(position) && getActor(position) == actor) {
+      setPosition(null, position);
+    }
   }
 
   public List<Player> getPlayers() {
