@@ -81,10 +81,7 @@ public abstract class Player extends Actor {
     }
   }
   boolean verifyPlayersCanFight(Player otherPlayer) {
-    if (this.isAlive() && otherPlayer == null && otherPlayer.isAlive()) {
-      return true;
-    } else
-      return false;
+    return this.isAlive() && otherPlayer != null && otherPlayer.isAlive();
   }
   short winFight(Player enemy) {
     enemy.setAlive(false);
