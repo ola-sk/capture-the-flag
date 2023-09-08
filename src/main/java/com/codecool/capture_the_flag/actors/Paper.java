@@ -18,7 +18,7 @@ public class Paper extends Player {
 
   @Override
   public short fight(Player otherPlayer) {
-    throwIfFightNotPossible(otherPlayer);
+    validateFightConditions(otherPlayer);
     if (otherPlayer.getTeam() == this.getTeam())
       return -1;
     if (otherPlayer.getTeam() == PlayerTeam.ROCK)

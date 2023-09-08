@@ -3,6 +3,7 @@ package com.codecool.capture_the_flag.actors;
 import com.codecool.capture_the_flag.GameMap;
 import com.codecool.capture_the_flag.util.Direction;
 import com.codecool.capture_the_flag.util.Vector;
+import java.util.Objects;
 
 /**
  * Base class for all Player
@@ -71,13 +72,13 @@ public abstract class Player extends Actor {
    * @return 1 if this player won, 0 if the other player won, -1 if fight didn't happen (otherPlayer is a teammate)
    */
   public abstract short fight(Player otherPlayer);
-  void throwIfFightNotPossible(Player otherPlayer) throws RuntimeException {
+  void validateFightConditions(Player otherPlayer) {
     if (!this.isAlive()) {
-      throw new IllegalStateException("Player cannot fight since it is dead!");
-    } else if (otherPlayer == null) {
-      throw new IllegalArgumentException("The `otherPlayer` cannot be null.");
-    } else if (!otherPlayer.isAlive()) {
-      throw new IllegalArgumentException("The other player was dead already!");
+        throw new IllegalStateException("Player cannot fight since it is dead!");
+    }
+    Objects.requireNonNull(otherPlayer, "The `otherPlayer` cannot be null.");
+    if (!otherPlayer.isAlive()) {
+        throw new IllegalArgumentException("The other player is already dead!");
     }
   }
   boolean verifyPlayersCanFight(Player otherPlayer) {
