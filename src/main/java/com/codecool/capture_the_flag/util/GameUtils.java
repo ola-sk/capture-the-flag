@@ -4,6 +4,9 @@ import com.codecool.capture_the_flag.actors.Actor;
 
 public class GameUtils {
 
+  private GameUtils() {
+  }
+
   /**
    * Returns a character representing given actor
    * Throws an IllegalArgumentException when given invalid input
