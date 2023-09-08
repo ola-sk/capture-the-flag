@@ -9,7 +9,12 @@ import java.util.Queue;
  * Static class for creating new actor instances
  */
 public class ActorFactory {
+  /**
+   * Private constructor to prevent instantiation
+   */
+  private ActorFactory() {
 
+  }
   /**
    * A predefined collection of names for the players
    */
