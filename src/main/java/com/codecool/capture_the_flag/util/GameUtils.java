@@ -20,11 +20,17 @@ public class GameUtils {
    * Returns a vector representing given direction
    * Throws an IllegalArgumentException when given invalid input
    *
-   * @param dir
-   * @return
+   * @param dir the direction in which the player wants to move
+   * @return vector representing given direction
    */
   public static Vector toVector(Direction dir) {
-    throw new RuntimeException("Method not implemented!");
+    switch (dir) {
+      case UP: return new Vector(0, -1);
+      case DOWN: return new Vector(0, 1);
+      case LEFT: return new Vector(-1, 0);
+      case RIGHT:return new Vector(1, 0);
+    }
+    throw new IllegalArgumentException();
   }
 
   /**
@@ -55,11 +61,17 @@ public class GameUtils {
    * Returns a direction that is opposite to given direction
    * Throws an IllegalArgumentException when given invalid input
    *
-   * @param dir
-   * @return
+   * @param dir direction
+   * @return direction that is opposite to a given direction
    */
   public static Direction inverted(Direction dir) {
-    throw new RuntimeException("Method not implemented!");
+    switch (dir) {
+      case UP: return Direction.DOWN;
+      case DOWN: return Direction.UP;
+      case LEFT: return Direction.RIGHT;
+      case RIGHT: return Direction.LEFT;
+    }
+    throw new IllegalArgumentException();
   }
 
   /**
