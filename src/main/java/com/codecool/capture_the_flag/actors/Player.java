@@ -123,8 +123,8 @@ public abstract class Player extends Actor {
     return capturedFlags;
   }
 
-  public void setCapturedFlags(int capturedFlags) {
-    this.capturedFlags = capturedFlags;
+  public void addCapturedFlag() {
+    this.capturedFlags++;
   }
 
   /**

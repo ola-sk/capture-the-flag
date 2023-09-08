@@ -152,7 +152,7 @@ public class GameMap {
       actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
       setPosition(player, targetPosition);
 
-      player.setCapturedFlags(player.getCapturedFlags() + 1);
+      player.addCapturedFlag();
       ((Flag) actorOnTargetPosition).setCaptured(true);
     } else if (actorOnTargetPosition instanceof Player) {
       Player otherPlayer = (Player) actorOnTargetPosition;
