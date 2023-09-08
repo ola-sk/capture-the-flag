@@ -38,24 +38,24 @@ public class GameMap {
    */
   public GameMap(String charMatrix) {
     String[] lines = charMatrix.split("\r\n|\r|\n");
-    Actor[][] actorMatrix = new Actor[lines.length][lines[0].length()];
-    final List<Player> players= new ArrayList<>();
-    final List<Flag> flags = new ArrayList<>();
+    Actor[][] actors = new Actor[lines.length][lines[0].length()];
+    final List<Player> playerList= new ArrayList<>();
+    final List<Flag> flagList = new ArrayList<>();
     for (int i = 0; i<lines.length; i++) {
       char[] characters = lines[i].toCharArray();
       for (int j = 0; j<characters.length; j++){
         Actor fromChar = ActorFactory.createFromChar(characters[j], this);
-        actorMatrix[i][j] = fromChar;
+        actors[i][j] = fromChar;
         if (fromChar != null && fromChar.getClass().isAssignableFrom(Player.class)) {
-          players.add((Player) fromChar);
+          playerList.add((Player) fromChar);
         } else if (fromChar != null && fromChar.getClass().isAssignableFrom(Flag.class)) {
-          flags.add((Flag) fromChar);
+          flagList.add((Flag) fromChar);
         }
       }
     }
-    this.actorMatrix=actorMatrix;
-    this.players = players;
-    this.flags = flags;
+    this.actorMatrix = actors;
+    this.players = playerList;
+    this.flags = flagList;
   }
 
   /**
