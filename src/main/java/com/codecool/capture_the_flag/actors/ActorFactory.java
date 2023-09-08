@@ -36,11 +36,11 @@ public class ActorFactory {
   }
 
   /**
-   * Returns a new player instance, depending on given team
+   * Returns a new player instance, depending on a given team
    *
-   * @param team
-   * @param mapReference
-   * @return
+   * @param team player's team
+   * @param mapReference reference to Game's map
+   * @return new player instance
    */
   public static Actor createPlayer(Player.PlayerTeam team, GameMap mapReference) {
     switch (team) {
@@ -54,8 +54,8 @@ public class ActorFactory {
   /**
    * Returns a new Flag instance
    *
-   * @param mapReference
-   * @return
+   * @param mapReference reference to Game's map
+   * @return new Flag instance
    */
   public static Actor createFlag(GameMap mapReference) {
     return new Flag(mapReference);
@@ -64,9 +64,9 @@ public class ActorFactory {
   /**
    * Returns a new actor instance, depending on given character
    *
-   * @param c
-   * @param mapReference
-   * @return
+   * @param c character representing an actor type
+   * @param mapReference reference to Game's map
+   * @return new actor instance
    */
   public static Actor createFromChar(char c, GameMap mapReference) {
     switch (Character.toUpperCase(c)) {

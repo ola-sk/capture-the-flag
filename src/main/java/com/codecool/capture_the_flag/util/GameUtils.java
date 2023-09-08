@@ -11,11 +11,11 @@ public class GameUtils {
    * Returns a character representing given actor
    * Throws an IllegalArgumentException when given invalid input
    *
-   * @param actor
-   * @return
+   * @param actor actor
+   * @return character representing a given actor
    */
   public static char getChar(Actor actor) {
-    throw new RuntimeException("Method not implemented!");
+    return actor.toString().charAt(0);
   }
 
 
@@ -40,8 +40,8 @@ public class GameUtils {
    * Returns a direction converted from given vector
    * Throws an IllegalArgumentException when given invalid input
    *
-   * @param vector
-   * @return
+   * @param vector vector
+   * @return direction converted from given vector
    */
   public static Direction toDirection(Vector vector) {
 

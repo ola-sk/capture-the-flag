@@ -26,9 +26,9 @@ public abstract class Player extends Actor {
   /**
    * Returns a direction for the player's next move, depending on the nearest flag's position
    *
-   * @param playerPosition
-   * @param flagPosition
-   * @return
+   * @param playerPosition player's current position
+   * @param flagPosition  nearest flag's position
+   * @return direction for the player's next move
    */
   public static Direction getMoveDirection(Vector playerPosition, Vector flagPosition) {
     if (flagPosition == null ) { throw new IllegalArgumentException();}
@@ -51,7 +51,7 @@ public abstract class Player extends Actor {
   /**
    * Returns this player's current score
    *
-   * @return
+   * @return current score of this player
    */
   public int getCurrentScore() {
     int sum = 0;
@@ -62,6 +62,8 @@ public abstract class Player extends Actor {
 
   /**
    * Cycles this player's behavior
+   * Should be called on every game cycle
+   * Specific subclass ought to override this method to add additional logic
    */
   public abstract void onGameCycle();
 
@@ -97,14 +99,14 @@ public abstract class Player extends Actor {
   /**
    * Returns this player's team
    *
-   * @return
+   * @return PlayerTeam enum indicating the team of this player
    */
   public abstract PlayerTeam getTeam();
 
   /**
    * Returns true after player was killed
    *
-   * @return
+   * @return true if the player is alive, false otherwise
    */
   public boolean isAlive() {
     return alive;
@@ -117,7 +119,7 @@ public abstract class Player extends Actor {
   /**
    * Returns current number of flags captured by this player
    *
-   * @return
+   * @return current number of captured flags
    */
   public int getCapturedFlags() {
     return capturedFlags;
@@ -130,12 +132,23 @@ public abstract class Player extends Actor {
   /**
    * Returns the current number of players killed by this player
    *
-   * @return
+   * @return current number of killed players
    */
   public int getKilledPlayers() {
     return killedPlayers;
   }
 
+  // add javadoc to describe method below
+  /**
+   * Sets the number of killed players.
+   * Specific subclasses may override this method to add additional logic.
+   * Logic should be added to ensure that the number of killed players is always less
+   * than or equal to the number of players that can be killed by players of given subclass.
+   *
+   * @param killedPlayers the number of killed players
+   *                      (should be 0 or positive)
+   *                      (should be less than or equal to the number of players)
+   */
   public void setKilledPlayers(int killedPlayers) {
     this.killedPlayers = killedPlayers;
   }
@@ -145,7 +158,7 @@ public abstract class Player extends Actor {
   /**
    * Returns this player's name
    *
-   * @return
+   * @return name of the player
    */
   public String getName() {
     return name;

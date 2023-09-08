@@ -61,7 +61,7 @@ public class GameMap {
   /**
    * Returns a char matrix of map's current state
    *
-   * @return
+   * @return char matrix of map's current state
    */
   @Override
   public String toString() {
@@ -87,8 +87,8 @@ public class GameMap {
    * Should return null if no actor is present
    * Should throw an IllegalArgumentException if the position is outside map's boundaries
    *
-   * @param position
-   * @return
+   * @param position position
+   * @return actor instance present on given position
    */
   public Actor getActor(Vector position) {
     try {
@@ -102,8 +102,8 @@ public class GameMap {
    * Returns a position of given actor instance
    * Should throw an IllegalArgumentException if an actor is not found or no actor is given
    *
-   * @param actor
-   * @return
+   * @param actor actor
+   * @return Vector position of the actor
    */
   public Vector getPosition(Actor actor) {
     for (int i = 0; i < actorMatrix.length; i++) {
@@ -120,8 +120,8 @@ public class GameMap {
    * Assigns a given actor to given position
    * Should throw an IllegalArgumentException if the position is occupied by another actor
    *
-   * @param actor
-   * @param position
+   * @param actor actor to be assigned to given position
+   * @param position the position to which the actor should be assigned
    */
   public void setPosition(Actor actor, Vector position) {
     this.getActorMatrix()[position.getY()][position.getX()] = actor;
@@ -131,9 +131,9 @@ public class GameMap {
    * Attempts to move given player to a new position
    * If necessary, restricts movement or simulates fights between players
    *
-   * @param player
-   * @param currentPosition
-   * @param dir
+   * @param player player to be moved
+   * @param currentPosition player's current position
+   * @param dir the direction in which the player wants to move
    */
   public void tryMovePlayer(Player player, Vector currentPosition, Direction dir) {
     Vector dirVector = toVector(dir);
@@ -178,8 +178,8 @@ public class GameMap {
    * Returns the position of uncaptured flag that is closest to given player
    * Should throw IllegalArgumentException if there are no uncaptured flags
    *
-   * @param player
-   * @return
+   * @param player player for which the nearest flag should be found
+   * @return position of the nearest flag
    */
   public Vector getNearestFlagPosition(Player player) {
     Vector playerPosition = getPosition(player);
@@ -200,8 +200,8 @@ public class GameMap {
   /**
    * Returns true if given position is within the map's boundaries
    *
-   * @param position
-   * @return
+   * @param position position
+   * @return true if given position is within the map's boundaries
    */
   public boolean withinBoundaries(Vector position) {
     return isWithinBoundaries(position.getX(), position.getY(), getActorMatrix());
