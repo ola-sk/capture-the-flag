@@ -204,16 +204,7 @@ public class GameMap {
    * @return
    */
   public boolean withinBoundaries(Vector position) {
-    int x = position.getX();
-    int y = position.getY();
-    Actor[][] actorMatrix = getActorMatrix();
-
-    if (isWithinBoundaries(x, y, actorMatrix)) {
-      Actor actor = actorMatrix[y][x];
-      return true;
-    }
-
-    return false;
+    return isWithinBoundaries(position.getX(), position.getY(), getActorMatrix());
   }
 
   private boolean isWithinBoundaries(int x, int y, Actor[][] actorMatrix) {
