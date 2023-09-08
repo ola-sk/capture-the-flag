@@ -192,7 +192,7 @@ public class GameMap {
 
     for (Flag flag : flags) {
       Vector flagPosition = getPosition(flag);
-      double distance = calculateDistance(playerPosition, flagPosition);
+      double distance = getDistance(playerPosition, flagPosition);
       if (distance < shortestDistance) {
         shortestDistance = distance;
         nearestFlagPosition = flagPosition;
@@ -201,11 +201,7 @@ public class GameMap {
 
     return nearestFlagPosition;
   }
-  private double calculateDistance(Vector position1, Vector position2) {
-    int deltaX = position2.getX() - position1.getX();
-    int deltaY = position2.getY() - position1.getY();
-    return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-  }
+
   /**
    * Returns true if given position is within the map's boundaries
    *

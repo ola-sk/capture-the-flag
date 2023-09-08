@@ -69,11 +69,14 @@ public class GameUtils {
   /**
    * Returns the amount of steps a player has to make in order to get from pos1 to pos2
    *
-   * @param pos1
-   * @param pos2
-   * @return
+   * @param pos1 position 1
+   * @param pos2 position 2
+   * @return distance between pos1 and pos2 in steps
+   * 1 step = one field on the map either in horizontal or vertical direction
    */
   public static int getDistance(Vector pos1, Vector pos2) {
-    throw new RuntimeException("Method not implemented!");
+    int deltaX = pos2.getX() - pos1.getX();
+    int deltaY = pos2.getY() - pos1.getY();
+    return deltaX + deltaY;
   }
 }
