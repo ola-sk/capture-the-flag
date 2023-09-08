@@ -204,13 +204,23 @@ public class GameMap {
    * @return
    */
   public boolean withinBoundaries(Vector position) {
-    try {
-      Actor actor = getActorMatrix()[position.getY()][position.getX()];
+    int x = position.getX();
+    int y = position.getY();
+    Actor[][] actorMatrix = getActorMatrix();
+
+    if (isWithinBoundaries(x, y, actorMatrix)) {
+      Actor actor = actorMatrix[y][x];
       return true;
     }
-    catch(ArrayIndexOutOfBoundsException e) {
-      return false;
-    }
+
+    return false;
+  }
+
+  private boolean isWithinBoundaries(int x, int y, Actor[][] actorMatrix) {
+    int rows = actorMatrix.length;
+    int columns = actorMatrix[0].length;
+
+    return x >= 0 && x < columns && y >= 0 && y < rows;
   }
 
   public Actor[][] getActorMatrix() {
