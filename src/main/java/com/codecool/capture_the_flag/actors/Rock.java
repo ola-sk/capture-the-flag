@@ -28,7 +28,7 @@ public class Rock extends Player {
   }
 
   @Override
-  public short Fight(Player otherPlayer) {
+  public short fight(Player otherPlayer) {
     throwIfFightNotPossible(otherPlayer);
     if (otherPlayer.getTeam() == this.getTeam())
       return -1;

@@ -1,7 +1,6 @@
 package com.codecool.capture_the_flag.actors;
 
 import com.codecool.capture_the_flag.GameMap;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;

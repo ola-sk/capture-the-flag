@@ -54,7 +54,7 @@ The rules are the following:
 - **Paper** kills **Rock**.
 
 After one player kills another, he takes his position.\
-Winning a fight grants **5 points**.\
+Winning a fight grants **5 points**.
 
 ## Technical points
 The simulation is deterministic (meaning: there is no randomness).\

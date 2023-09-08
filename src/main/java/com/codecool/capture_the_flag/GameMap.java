@@ -5,11 +5,8 @@ import com.codecool.capture_the_flag.actors.ActorFactory;
 import com.codecool.capture_the_flag.actors.Flag;
 import com.codecool.capture_the_flag.actors.Player;
 import com.codecool.capture_the_flag.util.Direction;
-import com.codecool.capture_the_flag.util.GameUtils;
 import com.codecool.capture_the_flag.util.Vector;
-
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static com.codecool.capture_the_flag.util.GameUtils.getDistance;
@@ -21,7 +18,7 @@ import static com.codecool.capture_the_flag.util.GameUtils.toVector;
 public class GameMap {
 
   /**
-   * A 2D matrix of all actor references (null if the field is empty)
+   * A 2D matrix of all actors references (null if the field is empty)
    */
   private final Actor[][] actorMatrix;
 
@@ -95,8 +92,7 @@ public class GameMap {
    */
   public Actor getActor(Vector position) {
     try {
-      Actor actor = getActorMatrix()[position.getY()][position.getX()];
-      return actor;
+      return getActorMatrix()[position.getY()][position.getX()];
     } catch (ArrayIndexOutOfBoundsException e) {
       throw new IllegalArgumentException("Position outside of map boundaries.");
     }
@@ -104,7 +100,7 @@ public class GameMap {
 
   /**
    * Returns a position of given actor instance
-   * Should throw an IllegalArgumentException if actor is not found or no actor is given
+   * Should throw an IllegalArgumentException if an actor is not found or no actor is given
    *
    * @param actor
    * @return
@@ -121,8 +117,8 @@ public class GameMap {
   }
 
   /**
-   * Assignes given actor to given position
-   * Should throw an IllegalArgumentException if the position is occupied by an another actor
+   * Assigns a given actor to given position
+   * Should throw an IllegalArgumentException if the position is occupied by another actor
    *
    * @param actor
    * @param position
@@ -160,7 +156,7 @@ public class GameMap {
       ((Flag) actorOnTargetPosition).setCaptured(true);
     } else if (actorOnTargetPosition instanceof Player) {
       Player otherPlayer = (Player) actorOnTargetPosition;
-      int fightResult = player.Fight(otherPlayer);
+      int fightResult = player.fight(otherPlayer);
 
       if (fightResult == 1) {
         // Player has won, move to the target position
@@ -168,8 +164,7 @@ public class GameMap {
         actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
         setPosition(player, targetPosition);
       } else if (fightResult == 0) {
-        // Other player has won
-        player.setAlive(false);
+        // The other player has won
         actorMatrix[currentPosition.getY()][currentPosition.getX()] = null;
         actorMatrix[targetPosition.getY()][targetPosition.getX()] = null;
         setPosition(otherPlayer, currentPosition);
@@ -180,7 +175,7 @@ public class GameMap {
   }
 
   /**
-   * Returns the position of an uncaptured flag that is closest to given player
+   * Returns the position of uncaptured flag that is closest to given player
    * Should throw IllegalArgumentException if there are no uncaptured flags
    *
    * @param player
@@ -199,7 +194,6 @@ public class GameMap {
         nearestFlagPosition = flagPosition;
       }
     }
-
     return nearestFlagPosition;
   }
 

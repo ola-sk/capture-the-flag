@@ -1,10 +1,6 @@
 package com.codecool.capture_the_flag.util;
 
 import com.codecool.capture_the_flag.actors.Actor;
-import com.codecool.capture_the_flag.actors.Flag;
-import com.codecool.capture_the_flag.actors.Player;
-
-import java.util.Objects;
 
 public class GameUtils {
 

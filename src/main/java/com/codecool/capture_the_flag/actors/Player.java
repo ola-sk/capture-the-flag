@@ -23,7 +23,7 @@ public abstract class Player extends Actor {
   }
 
   /**
-   * Returns direction for the player's next move, depending on the nearest flag's position
+   * Returns a direction for the player's next move, depending on the nearest flag's position
    *
    * @param playerPosition
    * @param flagPosition
@@ -65,12 +65,12 @@ public abstract class Player extends Actor {
   public abstract void onGameCycle();
 
   /**
-   * Fight simulation between this and given player
+   * fight simulation between this and given player
    *
-   * @param otherPlayer
+   * @param otherPlayer the player to fight with
    * @return 1 if this player won, 0 if the other player won, -1 if fight didn't happen (otherPlayer is a teammate)
    */
-  public abstract short Fight(Player otherPlayer);
+  public abstract short fight(Player otherPlayer);
   void throwIfFightNotPossible(Player otherPlayer) throws RuntimeException {
     if (!this.isAlive()) {
       throw new IllegalStateException("Player cannot fight since it is dead!");
@@ -114,7 +114,7 @@ public abstract class Player extends Actor {
   }
 
   /**
-   * Returns current amount of flags captured by this player
+   * Returns current number of flags captured by this player
    *
    * @return
    */
@@ -127,7 +127,7 @@ public abstract class Player extends Actor {
   }
 
   /**
-   * Returns current amount of players killed by this player
+   * Returns the current number of players killed by this player
    *
    * @return
    */

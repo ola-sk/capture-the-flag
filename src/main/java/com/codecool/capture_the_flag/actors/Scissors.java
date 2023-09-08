@@ -1,9 +1,6 @@
 package com.codecool.capture_the_flag.actors;
 
 import com.codecool.capture_the_flag.GameMap;
-import com.codecool.capture_the_flag.util.Direction;
-import com.codecool.capture_the_flag.util.GameUtils;
-import com.codecool.capture_the_flag.util.Vector;
 
 /**
  * Scissors player class
@@ -20,7 +17,7 @@ public class Scissors extends Player {
   }
 
   @Override
-  public short Fight(Player otherPlayer) {
+  public short fight(Player otherPlayer) {
     throwIfFightNotPossible(otherPlayer);
     if (otherPlayer.getTeam() == this.getTeam())
       return -1;

@@ -1,6 +1,6 @@
 package com.codecool.capture_the_flag.actors;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 

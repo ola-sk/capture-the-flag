@@ -1,11 +1,6 @@
 package com.codecool.capture_the_flag.actors;
 
 import com.codecool.capture_the_flag.GameMap;
-import com.codecool.capture_the_flag.util.Direction;
-import com.codecool.capture_the_flag.util.GameUtils;
-import com.codecool.capture_the_flag.util.Vector;
-
-import static com.codecool.capture_the_flag.actors.Player.PlayerTeam.*;
 
 /**
  * Paper player class
@@ -22,7 +17,7 @@ public class Paper extends Player {
   }
 
   @Override
-  public short Fight(Player otherPlayer) {
+  public short fight(Player otherPlayer) {
     throwIfFightNotPossible(otherPlayer);
     if (otherPlayer.getTeam() == this.getTeam())
       return -1;
